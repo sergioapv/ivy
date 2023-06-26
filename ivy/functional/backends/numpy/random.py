@@ -50,6 +50,20 @@ def random_normal(
         np.random.seed(seed)
     return np.asarray(np.random.normal(mean, std, shape), dtype=dtype)
 
+def choice(
+    a: Union[np.ndarray, int], 
+    replace: Optional[bool] = True, 
+    size: Optional[Union[ivy.NativeShape, Sequence[int]]] = None, 
+    seed: Optional[int] = None,
+    p:np.ndarray=None
+) -> np.ndarray:
+    if seed:
+        np.random.seed(seed)
+    if isinstance(a, int):
+        if a > 0:
+            a = np.arange(a)
+    return np.asarray(np.random.choice(a=a, size=size, replace=replace, p=p))
+
 
 @with_unsupported_dtypes({"1.25.0 and below": ("bfloat16",)}, backend_version)
 def multinomial(
