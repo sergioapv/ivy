@@ -17,6 +17,10 @@ def random_sample(size=None):
 def dirichlet(alpha, size=None):
     return ivy.dirichlet(alpha, size=size)
 
+@to_ivy_arrays_and_back
+@from_zero_dim_arrays_to_scalar
+def choice(a, replace=True, size=None, p=None):
+    return ivy.choice(a=a, size=size, replace=replace, p=p)
 
 @to_ivy_arrays_and_back
 @from_zero_dim_arrays_to_scalar
